@@ -1,0 +1,39 @@
+<%- include layouts/header.ejs %>
+
+    <div class="page-data">
+        <div class="data-btn">
+            <button onClick="addAccountManager();">+ Add</button>
+        </div>
+        <div class>
+            <table class="data-table">
+                <tr>
+                    <th width="50px">No</th>
+                    <th>Name</th>
+                </tr>
+                <% if(data.length){
+                 for(var i = 0;i < data.length;i++) { %>
+                    <tr>
+                        <td>
+                            <%=data[i].IdAccountManager%>
+                        </td>
+                        <td>
+                            <%=data[i].AccountManager%>
+                        </td>
+                        <td>
+                            <form id="myform<%=data[i].IdAccountManager%>" method="post" action="../AccountManagers/setInactive/<%=data[i].IdAccountManager%>">
+                                <input type="hidden" name="name" value="value" />
+                                <a class="a-inside delete" onclick="document.getElementById('myform<%=data[i].IdAccountManager%>').submit();">Set Inactive</a>
+                            </form>
+                        </td>
+                    </tr>
+                    <% }
+             }else{ %>
+                        <tr>
+                            <td colspan="3">No Account Managers!</td>
+                        </tr>
+                        <% } %>
+            </table>
+        </div>
+    </div>
+
+    <%- include layouts/footer.ejs %>
